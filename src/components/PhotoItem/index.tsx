@@ -1,4 +1,4 @@
-import * as C from './styles';
+import { Container } from './styles';
 
 type Props = {
   url: string;
@@ -8,10 +8,10 @@ type Props = {
 
 export const PhotoItem = ({ url, name, onDelete }: Props) => {
   return (
-    <C.Container>
+    <Container>
       <img src={url} alt={name} />
       {name}
       <button onClick={() => onDelete(name)}>Apagar</button>
-    </C.Container>
+    </Container>
   );
 };

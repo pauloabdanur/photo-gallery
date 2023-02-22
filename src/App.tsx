@@ -1,5 +1,12 @@
 import { useState, useEffect, FormEvent } from 'react';
-import * as C from './App.styles';
+import {
+  Container,
+  Area,
+  Header,
+  PhotoList,
+  ScreenWarning,
+  UploadForm,
+} from './App.styles';
 import * as Photos from './services/photos';
 import { Photo } from './types/Photo';
 import { PhotoItem } from './components/PhotoItem';
@@ -46,27 +53,27 @@ const App = () => {
   };
 
   return (
-    <C.Container>
-      <C.Area>
-        <C.Header>Galeria de Fotos</C.Header>
+    <Container>
+      <Area>
+        <Header>Galeria de Fotos</Header>
 
         {/** Área de Upload */}
-        <C.UploadForm method="POST" onSubmit={handleFormSubmit}>
+        <UploadForm method="POST" onSubmit={handleFormSubmit}>
           <input type="file" name="image" />
           <input type="submit" value="Enviar" />
           {isUploading && 'Enviando...'}
-        </C.UploadForm>
+        </UploadForm>
 
         {/** Lista de Fotos */}
         {isLoading && (
-          <C.ScreenWarning>
+          <ScreenWarning>
             <div className="emoji">✋</div>
             <div>Carregando...</div>
-          </C.ScreenWarning>
+          </ScreenWarning>
         )}
 
         {!isLoading && photos.length > 0 && (
-          <C.PhotoList>
+          <PhotoList>
             {photos.map((item, index) => (
               <PhotoItem
                 key={index}
@@ -75,17 +82,17 @@ const App = () => {
                 onDelete={handleDeletePhoto}
               />
             ))}
-          </C.PhotoList>
+          </PhotoList>
         )}
 
         {!isLoading && photos.length === 0 && (
-          <C.ScreenWarning>
+          <ScreenWarning>
             <div className="emoji">😔</div>
             <div>Não há fotos cadastradas</div>
-          </C.ScreenWarning>
+          </ScreenWarning>
         )}
-      </C.Area>
-    </C.Container>
+      </Area>
+    </Container>
   );
 };
 
